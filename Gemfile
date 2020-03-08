@@ -79,3 +79,5 @@ gem 'jquery-rails'
 gem 'pry-byebug'
 
 gem 'rufo'
+
+# gem 'font-awesome-rails'

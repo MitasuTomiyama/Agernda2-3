@@ -35,20 +35,20 @@
 					<% if book.favorited_by?(@user) %>
 					  <td>
 					    <%= link_to book_favorites_path(book.id), method: :delete do %>
-					    <i class="fa fa-haert" aria-hidden="true" style="collo:red"></i>
+					    <i class="fa fa-heart like-btn" aria-hidden="true" ></i>
 					    <%= book.favorites.count %>
 					    <% end %>
 					</td>
 					<% else %>
 					  <td>
 					    <%= link_to book_favorites_path(book.id), method: :post do %>
-					    <i class="fa fa-haert" aria-hidden="true"></i>
+					    <i class="fa fa-heart unlike-btn" aria-hidden="true"></i>
 					    <%= book.favorites.count %>
 					    <% end %>
 					  </td>
 					<% end %>
 					<td>
-					<%= book.book_comments.count %>
+					<%= book.book_comments.count %><%= "コメント" %>
 					</td>
 				</tr>
 				<% end %>

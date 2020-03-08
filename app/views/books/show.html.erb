@@ -19,42 +19,46 @@
 						<%= @book.user.name %>
 						<% end %>
 					</td>
-					<td><%= link_to @book.title, book_path %></td>
+					<td><%= @book.title %></td>
 					<td><%= @book.body %></td>
 					
 					<% if @book.favorited_by?(current_user) %>
 					  <td>
 					    <%= link_to book_favorites_path(@book), method: :delete do %>
-					    <i class="fa fa-haert" aria-hidden="true" style="collor:red"></i>
+					    <i class="fa fa-heart unlike-btn" aria-hidden="true" ></i>
 					    <%= @book.favorites.count %>
 					    <% end %>
 					   </td>
 					<% else %>
 					  <td>
                         <%= link_to book_favorites_path(@book), method: :post do %>
-					    <i class="fa fa-haert" aria-hidden="true"></i>
+					    <i class="fa fa-heart like-btn" aria-hidden="true"></i>
 					    <%= @book.favorites.count %>
 					    <% end %>
 					   </td>
 					<% end %>
+					<td>
+					<%= @book.book_comments.count %><%= "コメント" %>
 					</td>
 					<% if @book.user == current_user %> 
-					<td><%= link_to "Edit",edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
-					<td><%= link_to "Destroy",@book, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
+					<td><%= link_to "Edit", edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
+					<td><%= link_to "Destroy", book_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
 					<% end %>
-					<td><%= link_to "Comment delete", book_book_comment_path(@book), method: :delete　%></td>
 				</tr>
 			</table>
 
-			<table>
-			<tr>
-			<% @bookcomments.each do |comment| %>
-			<td><%= comment.user.name %></td>
-			<td><%= comment.comment%></td>
-			
+			<h2>Comments</h2>
+
+		<table class="table">
+			    <% @bookcomments.each do |comment| %>
+		    <tr>
+			      <td><%= comment.user.name %></td>
+			      <td><%= comment.comment%></td>
+			      <td><%= link_to "Comment delete", book_book_comment_path(book_id: @book.id, id: comment.id), method: :delete %></td>
 			</tr>
-			</table>
-			<% end %>
+			    <% end %>
+		</table>
+
 			<%= form_for [@book,@book_comment] do |f| %>
 			<div>
 			<%= f.text_area :comment, class:"col-xs-12" %>
@@ -63,6 +67,8 @@
 			<%= f.submit class:"btn btn-primary col-xs-12" %>
 			</div>
 			<% end %>
+		</div>
 	</div>
 </div>
+
 
