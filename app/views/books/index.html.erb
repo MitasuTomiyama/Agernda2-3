@@ -2,9 +2,9 @@
 	<div class="col-xs-3">
 <h2>User info</h2>
 		<%= render 'users/profile', user: @user %>
-		<!--メモ　右側の指定に注意。そこを間違えるとエラーが発生して表示されない -->
+		<!--メモ 右側の指定に注意。そこを間違えるとエラーが発生して表示されない -->
 <h2>New book</h2>
-		<%= render 'books/newform', book: @book %>
+		<%= render 'books/newform', book: @booknew %>
 
 	</div>
 
@@ -31,6 +31,25 @@
 					</td>
 					<td><%= link_to book.title, book, class: "book_#{book.id}" %></td>
 					<td><%= book.body %></td>
+
+					<% if book.favorited_by?(@user) %>
+					  <td>
+					    <%= link_to book_favorites_path(book.id), method: :delete do %>
+					    <i class="fa fa-haert" aria-hidden="true" style="collo:red"></i>
+					    <%= book.favorites.count %>
+					    <% end %>
+					</td>
+					<% else %>
+					  <td>
+					    <%= link_to book_favorites_path(book.id), method: :post do %>
+					    <i class="fa fa-haert" aria-hidden="true"></i>
+					    <%= book.favorites.count %>
+					    <% end %>
+					  </td>
+					<% end %>
+					<td>
+					<%= book.book_comments.count %>
+					</td>
 				</tr>
 				<% end %>
 			</tbody>

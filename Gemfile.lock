@@ -249,6 +249,7 @@ GEM
     rspec-support (3.9.2)
     ruby2_keywords (0.0.2)
     ruby_dep (1.5.0)
+    rufo (0.11.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -336,6 +337,7 @@ DEPENDENCIES
   refile-mini_magick
   rspec-parameterized
   rspec-rails
+  rufo
   sass-rails (~> 5.0)
   shoulda-matchers
   spring

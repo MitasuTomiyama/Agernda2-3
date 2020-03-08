@@ -77,3 +77,5 @@ gem 'bootstrap-sass', '~> 3.3.6' #bootstrapを追加
 gem 'jquery-rails'
 
 gem 'pry-byebug'
+
+gem 'rufo'
